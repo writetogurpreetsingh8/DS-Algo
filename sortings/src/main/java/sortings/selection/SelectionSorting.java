@@ -1,6 +1,6 @@
 package sortings.selection;
 
-public class Selection {
+public class SelectionSorting {
 
 	
 	void selectionSort(int array[]) {
@@ -39,7 +39,7 @@ public class Selection {
 		for(int i :array) {
 			System.out.print(i+"\t");
 		}
-		new Selection().selectionSort(array);
+		new SelectionSorting().selectionSort(array);
 		System.out.println("\n");
 		System.out.println("after applied selection sorting array elements ........");
 		for(int i :array) {
