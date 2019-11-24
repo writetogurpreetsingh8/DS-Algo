@@ -1,5 +1,9 @@
 package sortings.quick;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentSkipListSet;
+
 public class QuickSorting {
 
 	int partition(int array[],int l,int u) {
@@ -54,7 +58,8 @@ public class QuickSorting {
 		for(int i :array) {
 			System.out.print(i+"\t");
 		}
-		
+		//ConcurrentLinkedQueue<E>
+	//	ConcurrentSkipListSet<E>
 		new QuickSorting().quickSort(array);
 		System.out.println("\n");
 		System.out.println("after applied quick Sorting array elements ........");
