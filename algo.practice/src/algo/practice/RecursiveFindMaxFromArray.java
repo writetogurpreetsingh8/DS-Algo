@@ -1,4 +1,4 @@
-package hacker.rank;
+package algo.practice;
 
 public class RecursiveFindMaxFromArray {
 

@@ -1,6 +1,8 @@
-package hacker.rank;
+package algo.practice;
 
 import java.util.Stack;
+
+import algo.practice.LinkingList;
 
 // non recursive approach........with stack........
 public class CheckPalindromLinkedListNonRecursive {

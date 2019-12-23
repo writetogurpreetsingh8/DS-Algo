@@ -1,13 +1,17 @@
-package hacker.rank;
+package algo.practice;
 
 public class ReportArmyOfficer {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	int findReportie(int battalion[]){
+		return 0;
 	}
+	
+	public static void main(String[] args) {
+
+		int battalion[] = {3,4,3,3,0,2,2,2,0,0};
+		
+		//System.
+	}
+	
 
 }

@@ -1,4 +1,4 @@
-package hacker.rank;
+package algo.practice;
 
 import java.util.LinkedList;
 import java.util.Queue;
