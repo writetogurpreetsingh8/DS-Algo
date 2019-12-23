@@ -1,4 +1,4 @@
-package hacker.rank;
+package algo.practice;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -53,7 +53,7 @@ class Execute{
 	
 }
 
-public class HourGlass1 {
+public class HourGlass {
 
 	public static void main(String[] args) {
 
