@@ -6,7 +6,7 @@ import java.util.Queue;
 // recursive approach with queue...........
 public class CheckPalindromLinkedListRecursive {
 
-	Queue<Integer> queue = new LinkedList<>();
+	Queue<Integer> queue = new LinkedList<Integer>();
 	boolean isPalindorm = false;
 	int size = 0;
 	
