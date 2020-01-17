@@ -2,12 +2,10 @@ package bst;
 
 import bst.BinarySearchTree.TreeNode;
 
-
-public class TestClass {
+public class Test {
 
 	public static void main(String[] args) {
 		
-			
 		BinarySearchTree binarySearchTree = new BinarySearchTree();
 		int array[]= {100,40,50,200,10,20};
 		
@@ -30,6 +28,14 @@ public class TestClass {
 		System.out.println("in - order traversal Iterative approach.........");
 		
 		binarySearchTree.inOrderTraversalInterative(root);
+
+		System.out.println("pre - order traversal Iterative approach.........");
+		binarySearchTree.preOrderTraversalInterative(root);
+		
+		System.out.println("level - wise traversal Iterative approach.........");
+
+		binarySearchTree.levelWiseTraversal(root);
+		
 	}
 
 }

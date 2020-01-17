@@ -1,5 +1,7 @@
 package bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -194,9 +196,41 @@ public class BinarySearchTree {
 			tempRoot = stack.pop();
 			System.out.println(tempRoot.value);
 			tempRoot = tempRoot.right;
-		}while(!stack.isEmpty());
-		
-		
+		}while(tempRoot != null || !stack.isEmpty());
 	}
 	
+	void preOrderTraversalInterative(TreeNode root){
+		
+		TreeNode tempRoot = root;
+		
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		
+		do{
+			while(tempRoot != null){
+				System.out.println(tempRoot.value);
+				stack.push(tempRoot);
+				tempRoot = tempRoot.left;
+			}
+			tempRoot = stack.pop();
+			tempRoot = tempRoot.right;
+		}while(tempRoot != null  || !stack.isEmpty());
+	}
+	
+	void levelWiseTraversal(TreeNode root){
+	
+		TreeNode tempRoot = root;
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		
+		do{
+			System.out.println(tempRoot.value);
+			if(tempRoot.left != null){
+				queue.add(tempRoot.left);
+			}
+			if(tempRoot.right != null){
+				queue.add(tempRoot.right);
+			}
+			tempRoot = queue.poll();
+		}while(tempRoot != null || !queue.isEmpty());
+		
+	}
 }
