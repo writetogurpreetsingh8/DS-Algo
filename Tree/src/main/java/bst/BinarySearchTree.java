@@ -33,10 +33,10 @@ public class BinarySearchTree {
 	TreeNode createBinarySearchTreeUsingRecursive(){
 		
 		Scanner sanScanner = new Scanner(System.in);
-		return createBinarySearchTreeUsingRecursive1(sanScanner);
+		return createBinaryTreeUsingRecursive(sanScanner);
 	}
 	
-	private TreeNode createBinarySearchTreeUsingRecursive1(Scanner scanner) {
+	private TreeNode createBinaryTreeUsingRecursive(Scanner scanner) {
 		
 		System.out.println("enter node value(-1 for no value...)");
 		int nodeValue = scanner.nextInt();
@@ -47,11 +47,11 @@ public class BinarySearchTree {
 		TreeNode treeNode = makeRootNode(nodeValue);
 		System.out.println("enter left child value for "+nodeValue);
 		
-		treeNode.left = createBinarySearchTreeUsingRecursive1(scanner);
+		treeNode.left = createBinaryTreeUsingRecursive(scanner);
 		
 		System.out.println("enter right child value for "+nodeValue);
 		
-		treeNode.right = createBinarySearchTreeUsingRecursive1(scanner);
+		treeNode.right = createBinaryTreeUsingRecursive(scanner);
 
 		return treeNode;
 	}
@@ -154,7 +154,9 @@ public class BinarySearchTree {
 		TreeNode root = null;
 		Scanner sanScanner = new Scanner(System.in);
 		int nodeValue = 0;
+		System.out.println("enter node value or enter -1 to exit!");
 		while(sanScanner.hasNextInt()) {
+			System.out.println("enter node value or enter -1 to exit!");
 			nodeValue = sanScanner.nextInt();
 			if(nodeValue == -1) {
 				break;
@@ -165,7 +167,7 @@ public class BinarySearchTree {
 	}
 	
 	private TreeNode insertNodeIntoBinarySearchTreeRecursively(TreeNode root, int nodeValue) {
-	
+		
 		if(root == null) {
 			return makeRootNode(nodeValue);
 		}
@@ -253,6 +255,34 @@ public class BinarySearchTree {
 		}while(tempRoot != null  || !stack.isEmpty());
 	}
 	
+	void postOrderTraversalIterative(TreeNode root) {
+		
+		TreeNode temp = root;
+		
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		
+		do {
+			
+			while(temp != null) {
+				stack.push(temp);
+				temp = temp.left;
+			}
+			temp = stack.peek();
+			if( temp.right == null) {
+				System.out.println(temp.value);
+				temp = stack.pop();
+				
+				while( ! stack.isEmpty() && temp == stack.peek().right) {
+					temp = stack.pop();
+					System.out.println(temp.value);
+				}
+			}
+			if(!stack.isEmpty()) {
+				temp = stack.peek().right;
+			}
+		}while(!stack.isEmpty());
+	}
+	
 	// time complexity is O(n) and space is O(n)
 	void levelWiseTraversalIterative(TreeNode root){
 	
@@ -275,13 +305,14 @@ public class BinarySearchTree {
 	public static void main(String[] args) {
 		
 		BinarySearchTree binarySearchTree = new BinarySearchTree();
-		int array[]= {100,40,50,200,10,20};
+		//int array[]= {100,40,50,200,10,20};
+		int array[]= {50,30,70,20,45,65,90,10,22,41};
 		
 		TreeNode root = binarySearchTree.createBinarySearchTreeUsingArray(array);
 		//binarySearchTree.createBinarySearchTree();
 		//TreeNode root = binarySearchTree.createBinarySearchTreeUsingRecursive();
 		
-		root = binarySearchTree.createBinarySearchTreeRecursive();
+		//TreeNode root1 = binarySearchTree.createBinarySearchTreeRecursive();
 		
 		System.out.println(" post order traversal....");
 		binarySearchTree.postOrderTraversalRecursive(root);
@@ -305,6 +336,10 @@ public class BinarySearchTree {
 		System.out.println("level - wise traversal Iterative approach.........");
 
 		binarySearchTree.levelWiseTraversalIterative(root);
+		
+		System.out.println("post - order traversal Iterative approach.........");
+
+		binarySearchTree.postOrderTraversalIterative(root);
 		
 	}
 	
