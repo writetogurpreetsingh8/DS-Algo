@@ -7,6 +7,7 @@ public class MergeSorting {
 		int i = lower;
 		int j = mid + 1;
 		int k = 0;
+		
 		int size = ((mid - lower) + (upper - mid) + 1);
 		int tempArray[] = new int[size];
 		
@@ -27,7 +28,8 @@ public class MergeSorting {
 				tempArray[k] = array[i];
 				k++;
 				i++;
-		}// coping remaining element from Jth list into temp Kth array
+		}
+		// coping remaining element from Jth list into temp Kth array
 		while(j <= upper) {
 			tempArray[k] = array[j];
 			j++;k++;
@@ -55,7 +57,7 @@ public class MergeSorting {
 	
 	public static void main(String[] args) {
 		
-int array[]= {5,4,3,2,1};
+		int array[]= {5,4,3,2,1};
 		
 		System.out.println("before applied merge sorting array elements are ........");
 		for(int i :array) {

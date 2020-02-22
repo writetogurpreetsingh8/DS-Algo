@@ -3,6 +3,7 @@ package linkedlist;
 import iterator.Iterator;
 
 public interface LinkedList<E> {
+	
 	void add(E element);
 	void addAtBeginning(E element);
 	void addAtMiddle(int position,E element);

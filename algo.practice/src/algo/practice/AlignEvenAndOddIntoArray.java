@@ -1,5 +1,7 @@
 package algo.practice;
 
+import java.util.PriorityQueue;
+
 // align even and odd element in the sequence left side would be all even and right side would be all odd
 public class AlignEvenAndOddIntoArray {
 
@@ -28,7 +30,8 @@ public class AlignEvenAndOddIntoArray {
 	
 	public static void main(String[] args) {
 		
-		int array[]= {5,7,4,3,3,8,2,5,10,11,4,2,1,10,9,0,11,6,6,0};
+		//int array[]= {5,7,4,3,3,8,2,5,10,11,4,2,1,10,9,0,11,6,6,0};
+		int array[]= {1,3,5,7};
 		System.out.println("before aligned even and odd........");
 		for(int i :array) {
 			System.out.print(i+"\t");

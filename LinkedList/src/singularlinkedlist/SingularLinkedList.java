@@ -54,7 +54,7 @@ public class SingularLinkedList<E> implements LinkedList<E>{
 		else{
 			Node base = header;
 			int i=1;
-			while(i <= (position - 1)){
+			while(i < (position - 1)){
 				base = base.next;
 				i++;
 			}
@@ -263,7 +263,7 @@ public class SingularLinkedList<E> implements LinkedList<E>{
 		return null;
 	}
 
-	private class Node{
+ private class Node{
 		E element;
 		Node next;
 		
@@ -272,7 +272,19 @@ public class SingularLinkedList<E> implements LinkedList<E>{
 			this.element = element;
 			this.next = next;
 		}
+
+		@Override
+		public String toString() {
+			return "Node [element=" + element + ", next=" + next + "]";
+		}
 		
 	}
+
+	@Override
+	public String toString() {
+		return "SingularLinkedList [header=" + header + "]";
+	}
+	
+	
 
 }
