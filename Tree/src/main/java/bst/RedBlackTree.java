@@ -45,7 +45,7 @@ class RedBlackTree1{
 			
 				System.out.println("enter child value for RBT or enter -1 for exit!");
 				value = scanner.nextInt();
-				if(value < 0 ) {
+				if(value == -1 ) {
 					break;
 				}
 				
@@ -87,7 +87,6 @@ class RedBlackTree1{
 		
 			// parent node must not be root and parent node must be red.... so red-red parent child conflict , 
 			// so resolve it.....
-			//Node temp = node;
 			
 			while(!isRoot(node.parent) && !node.parent.isBlack) {
 				
@@ -95,6 +94,7 @@ class RedBlackTree1{
 				
 				// if uncle isn't null and uncle having red color just simple re-color
 				// and check if the parent's  parent of new node is not the root then re-color the parent's parent of new-node also
+				// and re-check it the root or until found black node
 				if(uncle != null && !uncle.isBlack) {
 					
 					uncle.isBlack = !uncle.isBlack;
@@ -144,9 +144,10 @@ class RedBlackTree1{
 				
 				parent.parent.left = node;
 				node.parent = parent.parent;
+				parent.right = node.left;
 				node.left = parent;
 				parent.parent = node;
-				parent.right = null;
+				
 				rightRotation(parent);
 			}
 			// nodes are exits at R - L location , so adjust them in RR side before performing LL Rotation
@@ -154,9 +155,10 @@ class RedBlackTree1{
 				
 				parent.parent.right = node;
 				node.parent = parent.parent;
+				parent.left = node.right;
 				node.right = parent;
 				parent.parent = node;
-				parent.left = null;
+				
 				leftRotation(parent);
 			}
 		}
@@ -216,7 +218,6 @@ class RedBlackTree1{
 			}
 			parent.isBlack = !parent.isBlack; 
 			parent.right.isBlack = !parent.right.isBlack;
-			
 		}
 		
 		public void inOrderTraversal() {
