@@ -38,10 +38,22 @@ public class DeleteNodeIntoBST {
 						}
 					}// case 2
 					else if(temp.left == null) {
-						q.right = temp.right;
+						
+						if(q.left == temp) {
+							q.left = temp.right;
+						}
+						else {
+							q.right = temp.right;
+						}
 					}//case 3
 					else if(temp.right == null) {
-						q.left = temp.left;
+						
+						if(q.left == temp) {
+							q.left = temp.left;
+						}
+						else {
+							q.right = temp.left;
+						}
 					}// case 4
 					else{
 						// find max value from left-sub tree
@@ -54,7 +66,13 @@ public class DeleteNodeIntoBST {
 							temp = temp.right;
 						}
 						q.value = temp.value;
-						current.right = null;
+						if(temp.left != null) {
+							current.right = temp.left;
+						}
+						else {
+							current.right = null;
+							
+						}
 					}
 				}
 				
@@ -67,7 +85,7 @@ public class DeleteNodeIntoBST {
 	public static void main(String[] args) {
 
 		BinarySearchTree binarySearchTree = new BinarySearchTree();
-		int array[]= {100,40,50,200,20,10,60};
+		int array[]= {100,40,50,200,20,10,45};
 		
 		TreeNode root = binarySearchTree.createBinarySearchTreeUsingArray(array);
 		System.out.println("in order traversal of tree.. before deleting ....");
