@@ -133,11 +133,11 @@ class RedBlackTree1{
 			
 			// nodes are exits at R - R location , so perform LL Rotation
 			if(parent.right == node && parent.parent.right == parent) {
-				leftRotation(node);
+				leftRotation(node,true);
 			}
 			// nodes are exits at L - L location , so perform RR Rotation
 			else if(parent.left == node && parent.parent.left == parent) {
-				rightRotation(node);
+				rightRotation(node,true);
 			}
 			// nodes are exits at L - R location , so adjust them in LL side before performing RR Rotation
 			else if(parent.parent.left != null && parent.left != node) {
@@ -148,7 +148,7 @@ class RedBlackTree1{
 				node.left = parent;
 				parent.parent = node;
 				
-				rightRotation(parent);
+				rightRotation(parent,true);
 			}
 			// nodes are exits at R - L location , so adjust them in RR side before performing LL Rotation
 			else if(parent.parent.right != null && parent.right != node) {
@@ -159,11 +159,11 @@ class RedBlackTree1{
 				node.right = parent;
 				parent.parent = node;
 				
-				leftRotation(parent);
+				leftRotation(parent,true);
 			}
 		}
 		
-		private void leftRotation(Node node) {
+		private void leftRotation(Node node,boolean isColorChanged) {
 		
 			Node parent = node.parent;
 			Node parentLeft = parent.left;
@@ -187,11 +187,13 @@ class RedBlackTree1{
 			else {
 				root = parent;
 			}
-			parent.isBlack = !parent.isBlack;
-			parent.left.isBlack = !parent.left.isBlack;
+			if(isColorChanged) {
+				parent.isBlack = !parent.isBlack;
+				parent.left.isBlack = !parent.left.isBlack;
+			}
 		}
 
-		private void rightRotation(Node node) {
+		private void rightRotation(Node node,boolean isColorChanged) {
 			
 			Node parent = node.parent;
 			Node parentRight = parent.right;
@@ -216,8 +218,128 @@ class RedBlackTree1{
 			else {
 				root = parent;
 			}
-			parent.isBlack = !parent.isBlack; 
-			parent.right.isBlack = !parent.right.isBlack;
+			
+			if(isColorChanged) {
+				parent.isBlack = !parent.isBlack; 
+				parent.right.isBlack = !parent.right.isBlack;
+			}
+		}
+		
+		public void deleteRBTNode(int nodeData) {
+			
+			Node q = root;
+			
+			if(root == null) {
+				System.out.println("not root availabe in the tree!");
+			}
+			else{
+				while(q != null && q.data != nodeData) {
+			
+					if(q.data > nodeData) {
+						q = q.left;
+					}
+					else if(q.data < nodeData) {
+						q = q.right;
+					}
+				}
+				if( q != null) {
+					delete(q);
+				}
+				else {
+					System.out.println("element not found into Red-Black Tree.........");
+				}
+			}
+		}
+		
+		private void delete(Node node) {
+			
+			// delete root node , if it is only available node into RBT
+			if( (node.left == null && node.right == null && node.parent == null) ) {
+				root = null;
+			}
+			//leaf node with red color , just delete it.
+			else if( (node.left == null && node.right == null && !node.isBlack) ) {
+				setChildToEmpty(node);
+			}
+			// in case of found double-black node at leaf leave into RBT
+		/*
+		 * else if( (node.left == null && node.right == null && node.isBlack) ) {
+		 * fixAtDeletion(node); }
+		 */
+			// node having right child and left child, in this case find successor
+			else {
+				
+				if(node.left != null && node.right != null){
+				
+					Node successorNode = successor(node);
+					node.data = successorNode.data;
+					//delete(node);
+					node = successorNode;
+				}
+				
+			// node having either left or right child
+			//else {
+				Node replacementNode = node.left != null ? node.left : node.right; 
+				
+				if(replacementNode != null) {
+					
+				if(node.parent == null) {
+					root = replacementNode;
+					root.isBlack = true;
+				}
+				else if(isLeftChild(node)) {
+					replacementNode = node.left;
+					node.parent.left = replacementNode;
+				}
+				else {
+					replacementNode = node.right;
+					node.parent.right = replacementNode;
+				}
+				replacementNode.parent = node.parent;
+				
+				if(node.isBlack && !replacementNode.isBlack) {
+					replacementNode.isBlack = true;
+				}
+				else if(node.isBlack && replacementNode.isBlack) {
+					delete(replacementNode);
+				}
+				}
+				else {
+					fixAtDeletion(replacementNode);
+				}
+			}	
+			//}
+		}
+		
+		private Node successor(Node node) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		private void fixAtDeletion(Node node) {
+			
+		}
+		
+		// check particular node was the left child or right child of it's parent.
+		private boolean isLeftChild(Node node) {
+			return node.parent.left == node ? true : false;
+		}
+		
+		// set child to null either right child or left child
+		private void setChildToEmpty(Node node) {
+			
+			if(isLeftChild(node)) {
+				node.parent.left = null;
+			}
+			else {
+				node.parent.right = null;
+			}
+		//	setNodeParentToEmpty(node);
+			node.parent = null;
+		}
+		
+		// set node.parent to null, to break the link from child to parent;
+		private void setNodeParentToEmpty(Node node) {
 		}
 		
 		public void inOrderTraversal() {
