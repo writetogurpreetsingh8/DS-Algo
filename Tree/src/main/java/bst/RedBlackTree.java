@@ -32,6 +32,42 @@ class RedBlackTree1{
 			return new Node(data,parent,isBlack);
 		}
 		
+		public void createRedBlackTree(int array[]) {
+			
+			root = createNode(array[0], true, null);
+			Node p,q = null;
+			for(int i=1;i<array.length;i++) {
+				
+				q = p = root;
+				while(p.data != array[i]) {
+					
+					if( array[i] > p.data ) {
+						 q = p.right;
+					}
+					else if( array[i] < p.data) {
+						 q = p.left;
+					}
+					if( q == null) {
+						break;
+					}
+					p = q;
+				}
+					
+				if(p.data > array[i]) {
+					p.left = createNode(array[i], false, p);
+					fixationAfterInsertion(p.left);
+				}
+				else if(p.data < array[i]) {
+					p.right = createNode(array[i], false, p);
+					fixationAfterInsertion(p.right);
+				}
+				else {
+					System.out.println("duplicate value "+array[i]+" are not allowed in RBT...........");
+				}
+			}
+			
+		}
+		
 		public void createRedBlackTree() {
 			
 			Node p,q = null;
@@ -107,7 +143,7 @@ class RedBlackTree1{
 				else {
 					// if uncle is null or uncle is black then rotation is required after 
 					// rotation re-color it
-					performsRotations(node);
+					performsRotations(node,true);
 					break;
 				}
 			}
@@ -126,18 +162,23 @@ class RedBlackTree1{
 				return grandParent.left;
 			}
 		}
+		
+		private Node findSibilingOfDoubleBlack(Node node) {
+			
+			return node.parent != null ? node.parent.left == node ? node.parent.right : node.parent.left : null;
+		}
 	
-		private void performsRotations(Node node) {
+		private void performsRotations(Node node,boolean isColorChanged) {
 			
 			Node parent = node.parent;
 			
 			// nodes are exits at R - R location , so perform LL Rotation
 			if(parent.right == node && parent.parent.right == parent) {
-				leftRotation(node,true);
+				leftRotation(node,isColorChanged);
 			}
 			// nodes are exits at L - L location , so perform RR Rotation
 			else if(parent.left == node && parent.parent.left == parent) {
-				rightRotation(node,true);
+				rightRotation(node,isColorChanged);
 			}
 			// nodes are exits at L - R location , so adjust them in LL side before performing RR Rotation
 			else if(parent.parent.left != null && parent.left != node) {
@@ -148,7 +189,7 @@ class RedBlackTree1{
 				node.left = parent;
 				parent.parent = node;
 				
-				rightRotation(parent,true);
+				rightRotation(parent,isColorChanged);
 			}
 			// nodes are exits at R - L location , so adjust them in RR side before performing LL Rotation
 			else if(parent.parent.right != null && parent.right != node) {
@@ -159,7 +200,7 @@ class RedBlackTree1{
 				node.right = parent;
 				parent.parent = node;
 				
-				leftRotation(parent,true);
+				leftRotation(parent,isColorChanged);
 			}
 		}
 		
@@ -253,71 +294,176 @@ class RedBlackTree1{
 		
 		private void delete(Node node) {
 			
-			// delete root node , if it is only available node into RBT
-			if( (node.left == null && node.right == null && node.parent == null) ) {
-				root = null;
-			}
 			//leaf node with red color , just delete it.
-			else if( (node.left == null && node.right == null && !node.isBlack) ) {
+			if( (node.left == null && node.right == null && !node.isBlack) ) {
 				setChildToEmpty(node);
 			}
-			// in case of found double-black node at leaf leave into RBT
-		/*
-		 * else if( (node.left == null && node.right == null && node.isBlack) ) {
-		 * fixAtDeletion(node); }
-		 */
-			// node having right child and left child, in this case find successor
 			else {
-				
+				// node having right child and left child, in this case find successor
 				if(node.left != null && node.right != null){
 				
 					Node successorNode = successor(node);
 					node.data = successorNode.data;
-					//delete(node);
 					node = successorNode;
 				}
 				
-			// node having either left or right child
-			//else {
+				// node having either left or right child
 				Node replacementNode = node.left != null ? node.left : node.right; 
 				
 				if(replacementNode != null) {
 					
 				if(node.parent == null) {
 					root = replacementNode;
-					root.isBlack = true;
 				}
 				else if(isLeftChild(node)) {
-					replacementNode = node.left;
-					node.parent.left = replacementNode;
+					node.parent.right = replacementNode;
 				}
 				else {
-					replacementNode = node.right;
 					node.parent.right = replacementNode;
 				}
 				replacementNode.parent = node.parent;
 				
 				if(node.isBlack && !replacementNode.isBlack) {
+					// changing the node color red to black because we have deleted the black node having red child
 					replacementNode.isBlack = true;
 				}
 				else if(node.isBlack && replacementNode.isBlack) {
-					delete(replacementNode);
-				}
-				}
-				else {
+					// double black condition
 					fixAtDeletion(replacementNode);
 				}
+				}
+				else if(node.parent == null) {
+					root = null;
+				}
+				else {
+					// double black condition
+					if(node.isBlack) {
+						fixAtDeletion(node);
+					}
+					else {
+						setChildToEmpty(node);
+					}
+				}
 			}	
-			//}
 		}
 		
 		private Node successor(Node node) {
-			// TODO Auto-generated method stub
-			return null;
+			
+			node = node.right;
+			while(node.left != null) {
+				node = node.left;
+			}
+			return node;
 		}
 
 		private void fixAtDeletion(Node node) {
 			
+			Node dbSibiling = null;
+			
+			while(node != root && node.isBlack) {
+				
+				dbSibiling = findSibilingOfDoubleBlack(node);
+				
+				//check for case 3
+				if(dbSibiling.isBlack && ((dbSibiling.left == null && dbSibiling.right == null)
+						|| (dbSibiling.left.isBlack && dbSibiling.right.isBlack)) ) {
+					
+					dbSibiling.isBlack = false;
+					setChildToEmpty(node);
+					//node.parent = null;
+					
+					if(!dbSibiling.parent.isBlack) {
+						dbSibiling.parent.isBlack = true;
+						node = root;
+					}
+					else {
+						// re-apply the cases's
+						node = dbSibiling.parent;
+					}
+				}// case 3 over
+				
+				// check for case 4
+				else if(!dbSibiling.isBlack) {
+					
+					swapColor(dbSibiling);
+					
+					if(isLeftChild(dbSibiling)) {
+						
+						if(dbSibiling.left != null) {
+							performsRotations(dbSibiling.left,false);
+						}
+						else {
+							performsRotations(dbSibiling,false);
+						}
+					}
+					else {
+						
+						if(dbSibiling.right != null) {
+							performsRotations(dbSibiling.right,false);
+						}
+						else {
+							performsRotations(dbSibiling,false);
+						}
+					}
+				}// case 4 over
+				
+				// check for case 5 and 6 altogether
+				else if(dbSibiling.isBlack) {
+					
+					// for left child
+					if(isLeftChild(dbSibiling)) {
+						
+						//check dbsibling is black and far child is red, so apply case 6
+						if(dbSibiling.left !=null  && !dbSibiling.left.isBlack) {
+							
+							swapColor(dbSibiling);
+							dbSibiling.left.isBlack = true;
+							performsRotations(dbSibiling.left,false);
+							node = root;// termination condition
+						}
+						else {
+							// apply case 5 only for left side........  // after apply case 5 definitely apply case 6
+							swapColor(dbSibiling.right);
+							if(dbSibiling.right.right != null) {
+								performsRotations(dbSibiling.right.right,false);
+							}
+							else {
+								performsRotations(dbSibiling.right,false);
+							}
+						}
+					}
+					else {
+						// for right child, symentric case
+						//check dbsibling is black and far child is red, so apply case 6
+						if(dbSibiling.right !=null && !dbSibiling.right.isBlack) {
+							
+							swapColor(dbSibiling);
+							dbSibiling.right.isBlack = true;
+							performsRotations(dbSibiling.right,false);
+							node = root;// termination condition
+						}
+						else {
+							// apply case 5 only for right side........ // after apply case 5 definitely apply case 6
+							swapColor(dbSibiling.left);
+							if(dbSibiling.left.left != null) {
+								performsRotations(dbSibiling.left.left,false);
+							}
+							else {
+								performsRotations(dbSibiling.left,false);
+							}
+						}
+					}
+				}
+				
+			}
+		}
+
+		// swap colors between nodes.....
+		private void swapColor(Node dbSibiling) {
+			
+			boolean color = dbSibiling.parent.isBlack;
+			dbSibiling.parent.isBlack = dbSibiling.isBlack;
+			dbSibiling.isBlack = color;
 		}
 		
 		// check particular node was the left child or right child of it's parent.
@@ -334,12 +480,7 @@ class RedBlackTree1{
 			else {
 				node.parent.right = null;
 			}
-		//	setNodeParentToEmpty(node);
 			node.parent = null;
-		}
-		
-		// set node.parent to null, to break the link from child to parent;
-		private void setNodeParentToEmpty(Node node) {
 		}
 		
 		public void inOrderTraversal() {
@@ -355,6 +496,24 @@ class RedBlackTree1{
 				inOrderTraversalForRBT(node.right);
 			}
 		}
+		
+		public void forfullyChangeTheNodeColor(int nodeValue,boolean isBlack) {
+			
+			Node temp = root;
+			
+			while(temp != null) {
+				
+				if(temp.data == nodeValue) {
+					temp.isBlack = isBlack;
+					break;
+				}else if(temp.data > nodeValue) {
+					temp = temp.left;
+				}
+				else {
+					temp = temp.right;
+				}
+			}
+		}
 }
 
 	public class RedBlackTree {
@@ -362,7 +521,23 @@ class RedBlackTree1{
 		public static void main(String[] args) {
 
 			RedBlackTree1 rbt = new RedBlackTree1();
-			rbt.createRedBlackTree();
+			//int array[]= {50,65,55,70,68,80,90,30,15,35};
+			int array[]= {10,5,30,1,7,25,40,20,28};
+			//rbt.createRedBlackTree();
+			rbt.createRedBlackTree(array);
+			rbt.inOrderTraversal();
+			
+			rbt.forfullyChangeTheNodeColor(20, true);
+			rbt.forfullyChangeTheNodeColor(1, true);
+			rbt.forfullyChangeTheNodeColor(7, true);
+			rbt.forfullyChangeTheNodeColor(20, true);
+			rbt.forfullyChangeTheNodeColor(28, true);
+			rbt.forfullyChangeTheNodeColor(40, true);
+			rbt.forfullyChangeTheNodeColor(30, true);
+			rbt.forfullyChangeTheNodeColor(25, false);
+			
+			rbt.deleteRBTNode(1);
+			
 			rbt.inOrderTraversal();
 		}
 }
