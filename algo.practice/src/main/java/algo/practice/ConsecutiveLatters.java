@@ -4,8 +4,8 @@ public class ConsecutiveLatters {
 
 	public static void main(String[] args) {
 
-		int a = 0;
-		int b = 3;
+		int a = 11;
+		int b = 7;
 		
 		int remainingA = a;
 		int remainingB = b;
@@ -87,6 +87,6 @@ public class ConsecutiveLatters {
 			}
 			
 		}
-		System.out.println(sb.toString());
+		System.out.println(sb);
 	}
 }

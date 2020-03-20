@@ -19,8 +19,6 @@ public class BinarySearchTree {
 			this.left = left;
 			this.right = right;
 		}
-		
-		
 	}
 	
 	private TreeNode root;
