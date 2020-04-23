@@ -1,6 +1,6 @@
 package sortings.merge;
 
-public class MergeSorting {
+public class MergeSortingRecursive {
 
 	void mergeArray(int array[],int lower,int mid,int upper) {
 		
@@ -64,7 +64,7 @@ public class MergeSorting {
 			System.out.print(i+"\t");
 		}
 		
-		new MergeSorting().mergeSort(array,0,array.length-1);
+		new MergeSortingRecursive().mergeSort(array,0,array.length-1);
 		System.out.println("\n");
 		System.out.println("after applied merge Sorting array elements ........");
 		for(int i :array) {
