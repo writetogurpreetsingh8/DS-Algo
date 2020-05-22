@@ -4,6 +4,9 @@ package sortings.shell;
 // if gap is n/2 than complexity would be O(n)2 
 // if gap is 3*x+1 than complexity would be O(n)3/2 that is much lesser than O(n)2
 // worst-case complexity depends upon the gap sequence 
+//https://www.youtube.com/watch?v=pGhazjsFW28
+// to found best gap sequence is a search problem............
+
 public class ShellSorting {
 	
 	void shellSort(int array[]) {
