@@ -1,4 +1,4 @@
-package algo.practice;
+package recursion;
 
 public class recursive {
 

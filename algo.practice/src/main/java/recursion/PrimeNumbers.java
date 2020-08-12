@@ -1,4 +1,4 @@
-package algo.practice;
+package recursion;
 
 // calculate prime numbers 1 to n with O(nlogn) time complextity
 public class PrimeNumbers {

@@ -1,4 +1,5 @@
-package algo.practice;
+package recursion;
+
 /**
  * 
  * @author Tony.Stark
@@ -8,6 +9,7 @@ package algo.practice;
  * aux space O(1)
  * Recurrence relation  = 2T(n-1) + 1 
  */
+
 public class SortArrayUsingRecursion {
 
 	private static int  sort;

@@ -1,4 +1,6 @@
-package algo.practice;
+package recursion;
+
+import algo.practice.LinkingList;
 
 public class ReverseLinkedListRecursive {
 
@@ -31,7 +33,7 @@ public class ReverseLinkedListRecursive {
 	
 	public static void main(String[] args) {
 		
-		LinkingList linkingList = new LinkingList();
+		recursion.LinkingList linkingList = new recursion.LinkingList();
 		Node head = linkingList.createLinkedList();
 		ReverseLinkedListRecursive linkedList = new ReverseLinkedListRecursive();
 		System.out.println("before reverse the list "+head);
