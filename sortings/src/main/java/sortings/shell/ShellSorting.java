@@ -6,7 +6,7 @@ package sortings.shell;
 // worst-case complexity depends upon the gap sequence 
 //https://www.youtube.com/watch?v=pGhazjsFW28
 // to found best gap sequence is a search problem............
-
+// one of best fast sorting algo unless array size is huge if in case of gap sequence is well defined.
 public class ShellSorting {
 	
 	void shellSort(int array[]) {

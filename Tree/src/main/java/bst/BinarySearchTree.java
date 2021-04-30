@@ -4,6 +4,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
+
 public class BinarySearchTree {
 
 	
@@ -55,7 +56,7 @@ public class BinarySearchTree {
 	}
 	
 	// time complexity is O(n) and space is O(1)
-	TreeNode createBinarySearchTreeUsingArray(int array[]){
+	public TreeNode createBinarySearchTreeUsingArray(int array[]){
 		
 		TreeNode p = null;
 		TreeNode q = null;

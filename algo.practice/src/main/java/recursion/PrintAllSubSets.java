@@ -18,7 +18,7 @@ public class PrintAllSubSets {
 	
 	private static void print(String input,String output) {
 		if(input.isEmpty()) {
-			System.out.println(output);
+			System.out.print(output+"\t");
 			return;
 		}
 		count++;	
@@ -37,8 +37,8 @@ public class PrintAllSubSets {
 		
 		System.out.println(new Date());
 		
-		PrintAllSubSets.printAllSubSets("abcdeghjiklmnopqrstuvwxyz");
-		System.out.println("total sub-sets are "+count);
+		PrintAllSubSets.printAllSubSets("bbrrg");
+		System.out.println("\ntotal sub-sets are "+count);
 		
 		System.out.println(new Date());
 		

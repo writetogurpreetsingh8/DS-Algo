@@ -57,7 +57,7 @@ public class MergeSortingRecursive {
 	
 	public static void main(String[] args) {
 		
-		int array[]= {5,4,3,2,1};
+		int array[]= {3,1,2,6,5,4};
 		
 		System.out.println("before applied merge sorting array elements are ........");
 		for(int i :array) {

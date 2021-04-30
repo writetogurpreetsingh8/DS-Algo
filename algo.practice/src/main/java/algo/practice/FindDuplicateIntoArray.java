@@ -32,9 +32,10 @@ public class FindDuplicateIntoArray {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int array[]= {1,2,3,1,14,3,6,0,61,6,14,0};
-		//printRepeating(array,array.length);
-		pringRepeating(array);
+		//int array[]= {1,2,3,1,14,3,6,61,6,14};
+		int array[]= {1,4,2,1,3,0,0};
+		printRepeating(array,array.length);
+		//pringRepeating(array);
 	}
 
 }

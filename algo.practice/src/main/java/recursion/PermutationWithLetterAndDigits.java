@@ -27,9 +27,6 @@ public class PermutationWithLetterAndDigits {
 			output1 = output1+(char)c;
 			permutationWithLetterAndDigits(input,output1);
 		}
-		
-		
-		
 	}
 	
 	public static void main(String[] args) {

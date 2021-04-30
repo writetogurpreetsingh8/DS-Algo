@@ -22,8 +22,8 @@ public class LinkingList{
 	head = null;
 	Node currentNode = null;
 		
-		for(int i=0;i<5;i++){
-			if( i ==0 ){
+		for(int i=0;i<3;i++){
+			if( i == 0 ){
 				head = new Node();
 				head.setData(i);
 				currentNode = head;

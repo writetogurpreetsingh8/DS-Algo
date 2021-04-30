@@ -4,17 +4,16 @@ public class TowerOfHanoi {
 
 	private static int call;
 	
-	private static void TOH(int plates,char sourcePiller,char distinationPiller,char auxPiller) {
+	private static void TOH(int plates,char sourcePiller,char distinationPiller,char helperPiller) {
 		
 		call++;
-		
 		if(plates == 1) {
 			System.out.println("move plate "+plates+" from sourece "+sourcePiller+" to "+distinationPiller);
 			return;
 		}
-		TOH(plates-1,sourcePiller,auxPiller,distinationPiller);
+		TOH(plates-1,sourcePiller,helperPiller,distinationPiller);
 		System.out.println("move plate "+plates+" from sourece "+sourcePiller+" to "+distinationPiller);
-		TOH(plates-1,auxPiller,distinationPiller,sourcePiller);
+		TOH(plates-1,helperPiller,distinationPiller,sourcePiller);
 	}
 	public static void main(String[] args) {
 		

@@ -45,7 +45,7 @@ public class PrintNDigitBinaryNumbershHavingMore1Then0 {
 	
 	public static void main(String[] args) {
 		
-		PrintNDigitBinaryNumbershHavingMore1Then0.printNDigitBinaryNumbershHavingMore1Then0(5);
+		PrintNDigitBinaryNumbershHavingMore1Then0.printNDigitBinaryNumbershHavingMore1Then0(3);
 		System.out.println("total passess are "+counter);
 	}
 

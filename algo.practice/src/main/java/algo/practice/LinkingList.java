@@ -22,10 +22,10 @@ public class LinkingList{
 	head = null;
 	Node currentNode = null;
 		
-		for(int i=0;i<5;i++){
+		for(int i=0;i<9;i++){
 			if( i ==0 ){
 				head = new Node();
-				head.setData(i);
+				head.setData(6);
 				currentNode = head;
 			}
 			else{
@@ -39,7 +39,7 @@ public class LinkingList{
 		return head;
 	}
 	
-	void createLinkedList(int array[]){
+	Node createLinkedList(int array[]){
 		
 		head = null;
 		Node currentNode = null;
@@ -58,6 +58,7 @@ public class LinkingList{
 				}
 				size++;
 			}
+		return head;
 		}
 
 	

@@ -20,7 +20,7 @@ class FindDuplicateIntoArrays {
 	   numbers.add(3);
 
 	   Collections.sort(numbers);
-		
+		//[1, 1, 2, 2, 2, 3, 3, 4]
 	   int numDup = 0, dupCount = 0;
 	   int previous = -1;
 	   for (int i=0; i < numbers.size(); ++i) {

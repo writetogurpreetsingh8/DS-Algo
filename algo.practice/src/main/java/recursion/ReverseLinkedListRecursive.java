@@ -1,7 +1,5 @@
 package recursion;
 
-import algo.practice.LinkingList;
-
 public class ReverseLinkedListRecursive {
 
 	
@@ -30,6 +28,23 @@ public class ReverseLinkedListRecursive {
 	}
 	
 	
+	Node reverseLinkedListHBI(Node list){
+		if(list == null || list.getNext() == null) {
+			return list;
+		}
+		
+		Node temp = reverseLinkedListHBI(list.getNext());
+		list.getNext().setNext(list);
+		//list.getNext().setNext(temp1);
+		list.setNext(null);
+		return temp;
+	}
+	
+	
+	
+	
+	
+	
 	
 	public static void main(String[] args) {
 		
@@ -38,6 +53,7 @@ public class ReverseLinkedListRecursive {
 		ReverseLinkedListRecursive linkedList = new ReverseLinkedListRecursive();
 		System.out.println("before reverse the list "+head);
 		head = linkedList.reverseLinkedList(head);
+		//head = linkedList.reverseLinkedListHBI(head);
 		System.out.println("after reverse the list "+head);
 		System.out.println();
 		

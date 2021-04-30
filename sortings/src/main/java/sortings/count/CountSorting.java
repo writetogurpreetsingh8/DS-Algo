@@ -49,7 +49,8 @@ public class CountSorting {
 		
 		//int array[]= {5,4,3,2,1};
 				//int array[]= {7,6,10,5,9,2,1,15,7};
-				int array[]= {5,7,4,3,3,8,2,5,10,11,4,2,1,10,9,0,11,6,6,0};
+				//int array[]= {5,7,4,3,3,8,2,5,10,11,4,2,1,10,9,0,11,6,6,0};
+		int array[]= {0,3,1,2,5,0,1};
 				System.out.println("before applied quick sorting array elements are ........");
 				for(int i :array) {
 					System.out.print(i+"\t");

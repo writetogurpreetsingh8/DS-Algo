@@ -51,7 +51,8 @@ public class QuickSorting {
 		
 		//int array[]= {5,4,3,2,1};
 		//int array[]= {7,6,10,5,9,2,1,15,7};
-		int array[]= {5,7,4,3,8,2};
+		//int array[]= {5,7,4,3,8,2};
+		int array[]= {3,1,2,6,5,4};
 		System.out.println("before applied quick sorting array elements are ........");
 		for(int i :array) {
 			System.out.print(i+"\t");
