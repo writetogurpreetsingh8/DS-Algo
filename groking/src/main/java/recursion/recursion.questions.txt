@@ -1,0 +1,12 @@
+1) calculate factorial recursion -> DONE
+2) calculate sum of array using recursion -> DONE
+3) calculate exponent using recursion -> DONE ( https://www.youtube.com/redirect?v=HKp5R6qjF-o&redir_token=QUFFLUhqbTVTcXRkZ3JGaHBOOTFQaXBvVHlGakt1MzVaUXxBQ3Jtc0ttT1U5Tmtaa2gxY3M4dlBvRThMMll1VFF0X0lYN2RXLV9VT0ljemVnTUhHVWhwR2h3RnFsQVdhbkVWQXFFOUs0SEVxeVg1aDdnZnZxWHA4dEJUbWV5bk44RFlBSG44eF8zVk5kN2xLa3BSX2RYRU1Ebw%3D%3D&event=video_description&q=https%3A%2F%2Fwww.geeksforgeeks.org%2Fwrite-a-c-program-to-calculate-powxn%2F)
+4) reverse the array using recursion -> DONE (https://www.youtube.com/redirect?v=HKp5R6qjF-o&redir_token=QUFFLUhqbHlRandTbkFOYmJPOXlXdWhrN1BPLVV5cVFkZ3xBQ3Jtc0ttdW5qLTVNT0VjMHVlYnhWZ0ZabXRVYjdrenFzeUNmQk9DQ01BalNKNFpoS2NOR3AyLXBCM1BMNUZmRUhKZWlDT2FzamgtRXB4dFdRQUlEeE9QSlc0bkRVbHM2RExmSU9OOTNZcmNtNTJRYnA3RHJJbw%3D%3D&event=video_description&q=https%3A%2F%2Fj2eedev.org%2Freversing-an-array-using-recursion-in-java%2F)
+5) string to integer using recursion (https://www.youtube.com/redirect?v=HKp5R6qjF-o&redir_token=QUFFLUhqbmpTTndJU0tyNWlreFY0RTBnY1VBMmdSRXFtUXxBQ3Jtc0ttSC1pZ2dvV2lVZDF4elhfQU1NSl9GS0hIdUdlMnk5SmM1TWtkcURMYVNzcnlxZThsTXpjMVJCZllEczhxNkxQTlFELWk4M2VIU09fR1BhSUdMMzg4c0lJdmQyRVFTTEd3MHZ2U0VsQnFKaGRMTi1hWQ%3D%3D&event=video_description&q=https%3A%2F%2Fwww.geeksforgeeks.org%2Fconvert-a-string-to-an-integer-using-recursion%2F)
+									 (https://www.youtube.com/watch?v=Fgzl4t2qKGQ)
+6) reverse the stack using recursion -> DONE
+7) bubble sort using recursion (https://www.youtube.com/redirect?v=HKp5R6qjF-o&redir_token=QUFFLUhqa0stUkJ2VnctYUpvQlcyNE1VTnFPOUx6TW8tQXxBQ3Jtc0ttY1lvNl9ZSGlzUHBBRlhramllbE5oQ0drLXBXSHZxRmxSV2xUSHhrbWZiR0FPY2xIRXlKY0FqTlRGd2ZtWm5QNUU2ZjlOd0d2NXE3T081NzI3eXd0TUhfZHRiZlhvQ05EWXNIVlZaR0dvNkJCRkVXYw%3D%3D&event=video_description&q=https%3A%2F%2Fwww.geeksforgeeks.org%2Frecursive-bubble-sort%2F)
+8) sorting check using recursion -> DONE (https://www.geeksforgeeks.org/program-check-array-sorted-not-iterative-recursive/)
+9) min jumps to reach at end using recursion (https://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/)
+
+
