@@ -1,4 +1,4 @@
-package hacker.rank;
+package algo.practice;
 
 import java.io.File;
 import java.io.FileInputStream;

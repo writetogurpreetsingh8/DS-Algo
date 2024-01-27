@@ -22,7 +22,7 @@ public class ReportArmyOfficer {
 				hashMap.put(battalion[i], 1);
 			}
 		}
-		// find repotiee army officers
+		// find reporty army officers
 		
 		for(int i=0;i<battalion.length;i++){
 			

@@ -1,4 +1,4 @@
-package interview.bit;
+package algo.practice;
 
 import java.util.ArrayList;
 import java.util.Iterator;

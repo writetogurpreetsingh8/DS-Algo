@@ -1,4 +1,4 @@
-package interview.bit;
+package algo.practice;
 
 public class MaxSumContagiourSubArray {
 
