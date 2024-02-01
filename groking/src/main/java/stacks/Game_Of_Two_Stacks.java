@@ -6,7 +6,9 @@ import java.util.stream.Stream;
 
 public class Game_Of_Two_Stacks {
 
-	
+	/**
+	 * this below program not working properly
+	 */
 	private static int game_Of_Two_Stacks1(List<Integer> arr1, List<Integer> arr2, int sum) {
 		
 		if(arr1 == null || arr2 == null || sum <=0) {
@@ -31,7 +33,13 @@ public class Game_Of_Two_Stacks {
 	}
 	
 
-
+	/**
+	 * This below program is working fine!!
+	 * TC O(N+M)
+	 * aux-space O(1)
+	 * system stack O(N+M)
+	 * N,M refers to arr1 and arr2   
+	 */
 	private static int game_Of_Two_Stacks(int[] arr1, int[] arr2, int sum) {
 		
 		if(arr1 == null || arr2 == null || sum <=0) {
