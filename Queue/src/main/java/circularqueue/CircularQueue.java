@@ -20,7 +20,7 @@ public class CircularQueue<E> implements MyDSStaticQueueInterface<E> {
 			throw new IllegalArgumentException(
 			"inital capacity of queue can not be negative/zero");	
 		elements = new Object[initialCapacity];
-		rear = front = 0;
+		rear = front = -1;
 		size = 0;
 	}
 	
@@ -62,25 +62,42 @@ public class CircularQueue<E> implements MyDSStaticQueueInterface<E> {
 
 	@Override
 	public E pop() {
-		if(rear == front)
-			throw new IndexOutOfBoundsException("Circular Queue is underflow");
-		front = ((front + 1) % elements.length);
-		E element = (E)elements[front];
-		elements[front] = null;
-		size--;
-		return element;
+		if(rear == -1 && front == -1) {
+			throw new IllegalStateException("Circular Queue is underflow");
+		}
+		else if(rear == front) {
+			E element = (E)elements[front];
+			front = rear = -1;
+			size--;
+			return element;
+		}
+		else {
+			E element = (E)elements[front];
+			elements[front] = null;
+			front = ((front + 1) % elements.length);
+			size--;
+			return element;
+		}
 	}
 
 	@Override
 	public void push(E element) {
 		if(element == null)
 			throw new IllegalStateException("Passed element is null , can not push it into Circular Queue");
-			
-		if(front == ((rear + 1) % elements.length))
+		
+		if(rear == -1 && front == -1) {
+			rear = front = 0;
+			elements[rear] = element;
+			size++;
+		}
+		else if(front == ((rear + 1) % elements.length)) {
 			throw new IndexOutOfBoundsException("Circular Queue is overflow");
+		}
+		else {
 			rear = ((rear + 1) % elements.length);
 			elements[rear] = element;
 			size++;
+		}
 	}
 
 	@Override
@@ -152,5 +169,16 @@ public class CircularQueue<E> implements MyDSStaticQueueInterface<E> {
 			return element;
 		}
 		
+	}
+	
+	public static void main(String... e) {
+		CircularQueue<String> q = new CircularQueue<>();
+		q.push("A");q.push("B");q.push("C");
+		q.pop();
+		q.push("D");
+		q.push("E");
+		q.push("F");
+		q.pop();
+		q.push("G");
 	}
 }
