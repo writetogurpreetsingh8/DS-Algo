@@ -1,17 +1,21 @@
 package bst;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree {
 
-	class TreeNode{
-		
+	class TreeNode {
+
 		public int value;
 		public TreeNode left;
 		public TreeNode right;
-		
+
 		public TreeNode(int value, TreeNode left, TreeNode right) {
 			super();
 			this.value = value;
@@ -19,161 +23,201 @@ public class BinaryTree {
 			this.right = right;
 		}
 	}
-	
+
 	private TreeNode root;
-	
+
 	private TreeNode makeRootNode(int value) {
-		
-		return new TreeNode(value,null,null);
+
+		return new TreeNode(value, null, null);
 	}
-	
-	// time complexity would be O(n) and space complexity would be n for queue and n for set , 
-	//so total space complexity is 2n = O(n)
-	TreeNode createBinaryTreeUsingArrayIterative(int array[]){
-		
+
+	// time complexity would be O(n) and space complexity would be n for queue and n
+	// for set ,
+	// so total space complexity is 2n = O(n)
+	TreeNode createBinaryTreeUsingArrayIterative(int array[]) {
+
 		Queue<TreeNode> queue = new LinkedList<BinaryTree.TreeNode>();
 		HashSet<Integer> set = new HashSet<Integer>();
-		
+
 		root = makeRootNode(array[0]);
 		set.add(root.value);
-		
+
 		queue.add(root);
 		TreeNode cur = null;
-		
-		for(int i=1;i<array.length;i++) {
-			
-			if(!set.contains(array[i])) {
-				
+
+		for (int i = 1; i < array.length; i++) {
+
+			if (!set.contains(array[i])) {
+
 				cur = queue.peek();
-				if(cur.left == null) {
+				if (cur.left == null) {
 					cur.left = makeRootNode(array[i]);
 					queue.add(cur.left);
 					set.add(cur.left.value);
-				}
-				else {
+				} else {
 					cur.right = makeRootNode(array[i]);
 					queue.add(cur.right);
 					set.add(cur.right.value);
 					queue.poll();
 				}
-			}
-			else {
-				System.out.println("number "+array[i]+" found duplicate ,duplicates aren't allowed!");
+			} else {
+				System.out.println("number " + array[i] + " found duplicate ,duplicates aren't allowed!");
 			}
 		}
-		
+
 		System.out.println("end of tree..........");
 		return root;
 	}
-	
-	
+
 	void postOrderTraversalRecursive(TreeNode root) {
-	
-		if(root != null) {
+
+		if (root != null) {
 			postOrderTraversalRecursive(root.left); // 2 p
-			postOrderTraversalRecursive(root.right); //20
+			postOrderTraversalRecursive(root.right); // 20
 			System.out.println(root.value);
 		}
 	}
-	
+
 	void preOrderTraversalRecursive(TreeNode root) {
-		
-		if(root != null) {
+
+		if (root != null) {
 			System.out.println(root.value);
 			preOrderTraversalRecursive(root.left);
 			preOrderTraversalRecursive(root.right);
 		}
 	}
-	
+
 	void inOrderTraversalRecursive(TreeNode root) {
-		
-		if(root != null) {
+
+		if (root != null) {
 			inOrderTraversalRecursive(root.left);
 			System.out.println(root.value);
 			inOrderTraversalRecursive(root.right);
 		}
 	}
+
 	// time complexity is O(n) and space is O(n)
-	void inOrderTraversalInterative(TreeNode root){
-		
+	void inOrderTraversalInterative(TreeNode root) {
+
 		TreeNode tempRoot = root;
 		Stack<TreeNode> stack = new Stack<TreeNode>();
-		
-		do{
-			while(tempRoot != null){
+
+		do {
+			while (tempRoot != null) {
 				stack.push(tempRoot);
 				tempRoot = tempRoot.left;
 			}
 			tempRoot = stack.pop();
 			System.out.println(tempRoot.value);
 			tempRoot = tempRoot.right;
-		}while(tempRoot != null || !stack.isEmpty());
+		} while (tempRoot != null || !stack.isEmpty());
 	}
-	
+
 	// time complexity is O(n) and space is O(n)
-	void preOrderTraversalInterative(TreeNode root){
-		
+	void preOrderTraversalInterative(TreeNode root) {
+
 		TreeNode tempRoot = root;
-		
+
 		Stack<TreeNode> stack = new Stack<TreeNode>();
-		
-		do{
-			while(tempRoot != null){
+
+		do {
+			while (tempRoot != null) {
 				System.out.println(tempRoot.value);
 				stack.push(tempRoot);
 				tempRoot = tempRoot.left;
 			}
 			tempRoot = stack.pop();
 			tempRoot = tempRoot.right;
-		}while(tempRoot != null  || !stack.isEmpty());
+		} while (tempRoot != null || !stack.isEmpty());
 	}
-	
-	// time complexity is O(n) and space is O(n)
-	void levelWiseTraversalIterative(TreeNode root){
-	
+
+	// BSF Algo time complexity is O(n) and space is O(n)
+	void levelWiseTraversalIterative(TreeNode root) {
+
 		TreeNode tempRoot = root;
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
-		
-		do{
+
+		do {
 			System.out.println(tempRoot.value);
-			if(tempRoot.left != null){
+			if (tempRoot.left != null) {
 				queue.add(tempRoot.left);
 			}
-			if(tempRoot.right != null){
+			if (tempRoot.right != null) {
 				queue.add(tempRoot.right);
 			}
 			tempRoot = queue.poll();
-		}while(tempRoot != null || !queue.isEmpty());
-		
+		} while (tempRoot != null || !queue.isEmpty());
+
 	}
 	
+	/**
+	 * TC O(N)
+	 * system stack O(1)
+	 * aux-space O(max number of leafs in the tree)
+	 * in BT max number of leafs would be depended on type of BT but
+	 * here max number of leafs would be N/2
+	 * @param root
+	 * @return
+	 */
+	List<List<Integer>> levelWiseTraversalIterativeReturnValues(TreeNode root) {
+		
+		if (root == null) {
+			return Collections.emptyList();
+		}
+		
+		TreeNode tempRoot = root;
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		List<List<Integer>> result = new ArrayList<>();
+		int size;
+		queue.offer(root);
+		while (!queue.isEmpty()) {
+			size = queue.size();
+			List<Integer> levelList = new ArrayList<>();
+			for (int i = 0; i < size; i++) {
+				tempRoot = queue.poll();
+				levelList.add(tempRoot.value); // adding all the available of queue into list(values that available into queue
+												// would represent the current level
+				if (tempRoot.left != null) {
+					queue.add(tempRoot.left); // node that is being deleting from queue add its left child into queue
+					                          // for processing next level
+				}
+				if (tempRoot.right != null) { 
+					queue.add(tempRoot.right); // node that is being deleting from queue add its left child into queue
+                    						 //for processing next level
+				}
+			}
+			result.add(levelList);
+		}
+		return result;
+	}
+
 	public static void main(String[] args) {
-		
+
 		BinaryTree binaryTree = new BinaryTree();
-		int array[]= {100,40,50,200,10,10,20};
-		
+		int array[] = { 100, 40, 50, 200, 10, 10, 20 };
+
 		TreeNode root = binaryTree.createBinaryTreeUsingArrayIterative(array);
-		
+
 		System.out.println(" post order traversal....");
 		binaryTree.postOrderTraversalRecursive(root);
-		
+
 		System.out.println(" pre order traversal.......");
 		binaryTree.preOrderTraversalRecursive(root);
-		
+
 		System.out.println(" in-order order traversal.......");
 		binaryTree.inOrderTraversalRecursive(root);
-		
+
 		System.out.println("in - order traversal Iterative approach.........");
-		
+
 		binaryTree.inOrderTraversalInterative(root);
 
 		System.out.println("pre - order traversal Iterative approach.........");
 		binaryTree.preOrderTraversalInterative(root);
-		
+
 		System.out.println("level - wise traversal Iterative approach.........");
 
 		binaryTree.levelWiseTraversalIterative(root);
-		
+
 	}
-	
+
 }
