@@ -2,6 +2,9 @@ package bst;
 
 import bst.BinarySearchTree.TreeNode;
 
+/**
+ * Based on Morris traversal
+ */
 public class ThreadedBinaryTree {
 
 	void traversalTBTIntoInOrder(TreeNode root) {

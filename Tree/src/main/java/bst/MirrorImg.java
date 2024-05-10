@@ -13,7 +13,6 @@ public class MirrorImg {
 		TreeNode left = root.left;
 		root.left = root.right;
 		root.right = left;
-		
 	}
 	
 	public static void main(String[] args) {

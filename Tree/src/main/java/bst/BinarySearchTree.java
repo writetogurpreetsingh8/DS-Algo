@@ -271,7 +271,7 @@ public class BinarySearchTree {
 				System.out.println(temp.value);
 				temp = stack.pop();
 				
-				while( ! stack.isEmpty() && temp == stack.peek().right) {
+				while(!stack.isEmpty() && temp == stack.peek().right) {
 					temp = stack.pop();
 					System.out.println(temp.value);
 				}
@@ -304,8 +304,8 @@ public class BinarySearchTree {
 	public static void main(String[] args) {
 		
 		BinarySearchTree binarySearchTree = new BinarySearchTree();
-		//int array[]= {100,40,50,200,10,20};
-		int array[]= {50,30,70,20,45,65,90,10,22,41};
+		int array[]= {100,50,200,40,70,150,300,30,45,80};
+		//int array[]= {50,30,70,20,45,65,90,10,22,41};
 		
 		TreeNode root = binarySearchTree.createBinarySearchTreeUsingArray(array);
 		//binarySearchTree.createBinarySearchTree();
